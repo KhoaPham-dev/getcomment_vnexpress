@@ -1,0 +1,25 @@
+.sort {
+  max-width: calc(100% - 365px);
+  font-size: 13px;
+  margin-top: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.sort__care,
+.sort__new {
+  margin-right: 20px;
+  color: black;
+}
+
+.sort__care:hover,
+.sort__new:hover {
+  color: #9f224e;
+}
+
+.sort .sort__care--active,
+.sort .sort__new--active {
+  color: #9f224e !important;
+  font-weight: bold;
+  padding-bottom: 13px;
+  border-bottom: 1px solid #9f224e;
+}

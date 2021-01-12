@@ -1,0 +1,95 @@
+* {
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+a,
+u {
+  text-decoration: none !important;
+}
+.user {
+  min-height: 20px;
+  margin-top: 20px;
+}
+.avatar {
+  float: left;
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+  background-color: #e5e5e5;
+  text-align: center;
+}
+.avatar .avatar__content {
+  line-height: 35px;
+  font-size: 18px !important;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.content,
+.behavior,
+.count_reply {
+  padding-left: 46px;
+}
+.behavior {
+  margin-top: 10px;
+}
+.behavior > a {
+  cursor: pointer;
+}
+.content .content__username {
+  color: #04416d;
+  font-weight: bold;
+}
+
+.like,
+.behavior__reply,
+.behavior__share,
+.behavior__time_com,
+.behavior__report_comment {
+  margin-right: 20px;
+  color: #757575;
+  font-size: 13px;
+}
+
+.like:hover,
+.behavior__reply:hover,
+.behavior__share:hover,
+.behavior__time_com:hover,
+.behavior__report_comment:hover {
+  color: #087cce;
+}
+
+.like .like__total_like {
+  font-size: 14px;
+  margin-right: 5px;
+  color: #757575 !important;
+}
+
+.behavior .behavior__report_comment {
+  float: right;
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0.1s, opacity 0.1s linear;
+}
+
+.behavior:hover .behavior__report_comment {
+  visibility: visible;
+  opacity: 1;
+}
+
+.count_reply {
+  padding-top: 15px;
+}
+.count_reply .count_reply__text {
+  color: #076db6;
+  font-size: 13px;
+  font-weight: bold;
+  background: url("https://s1.vnecdn.net/vnexpress/restruct/c/v563/v2/wcomment/pc/vne/images/graphics/Reply.svg")
+    no-repeat left center;
+  padding-left: 20px;
+}
+
+.reply {
+  margin-left: 56px;
+}
