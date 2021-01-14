@@ -9,6 +9,13 @@ export const getComments = ({ objectId }) => {
       objecttype: 1,
       objectid: objectId,
     },
+    onDownloadProgress: (progressEvent) => {
+      let percentCompleted = Math.round(
+        (progressEvent.loaded * 100) / progressEvent.total
+      );
+      console.log(progressEvent.lengthComputable);
+      console.log(percentCompleted);
+    },
   });
   //return result;
 };

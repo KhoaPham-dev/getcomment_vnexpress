@@ -1,7 +1,6 @@
 .input {
   width: 100%;
   max-width: calc(100% - 365px);
-  min-height: 75px;
   position: relative;
   margin-top: 10px;
 }
@@ -12,12 +11,9 @@
   border: 1px solid #ccc;
   border-radius: 3px;
   transition: padding 0.25s, height 0.25s;
-}
-.input .input__inputElement:focus {
-  padding: 10px 0px 56px 10px;
-  height: 101px;
   outline: none;
 }
+
 .input .input__icon {
   font-size: 18px;
   display: inline;

@@ -14,6 +14,7 @@ import rootSaga from "./sagas";
 //axios.defaults.withCredentials = true;
 axios.defaults.baseURL =
   "https://cors-anywhere.herokuapp.com/https://usi-saas.vnexpress.net/index/";
+axios.defaults.timeout = 50000;
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducers, applyMiddleware(sagaMiddleware));

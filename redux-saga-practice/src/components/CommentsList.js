@@ -1,5 +1,5 @@
 import { ListGroupItem, ListGroup } from "reactstrap";
-
+import Skeleton from "react-loading-skeleton";
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
@@ -106,7 +106,12 @@ export default class CommentsList extends Component {
                           href="javascript:void(0);"
                           className="count_reply__text"
                         >
-                          <span>{comment.replys.total}</span> trả lời
+                          {this.props.isLoading ===
+                          `reply_${comment.comment_id}` ? (
+                            <Skeleton circle={true} height={50} width={50} />
+                          ) : (
+                            <span>{comment.replys.total} trả lời</span>
+                          )}
                         </a>
                       </div>
                     ) : null}

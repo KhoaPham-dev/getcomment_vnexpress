@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   items: {},
   sort: "like",
   objectId: 4219024,
+  isLoading: true,
 };
 
 const comments = (state = INITIAL_STATE, action) => {
@@ -13,6 +14,7 @@ const comments = (state = INITIAL_STATE, action) => {
         items: action.payload.items,
         objectId: action.payload.objectId,
         sort: state.sort,
+        isLoading: false,
       };
     }
     case Types.GET_REPLIES_SUCCESS: {
@@ -23,17 +25,34 @@ const comments = (state = INITIAL_STATE, action) => {
       });
       if (index !== -1)
         state.items.items[index].replys.items = action.payload.replies;
-      return { ...state };
+      return {
+        items: state.items,
+        sort: state.sort,
+        objectId: state.objectId,
+        isLoading: false,
+      };
     }
     case Types.HANDLE_SORTING: {
       return {
         items: state.items,
         objectId: state.objectId,
         sort: action.payload.sort,
+        isLoading: false,
+      };
+    }
+    case Types.GET_REPLIES_REQUEST: {
+      return {
+        items: state.items,
+        objectId: state.objectId,
+        sort: state.sort,
+        isLoading: `reply_${action.payload.commentId}`,
       };
     }
     default: {
-      return state;
+      return {
+        ...state,
+        isLoading: true,
+      };
     }
   }
 };

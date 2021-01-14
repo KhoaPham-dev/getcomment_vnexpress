@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import Skeleton from "react-loading-skeleton";
 import {
   getCommentsRequest,
   getRepliesRequest,
@@ -13,6 +13,10 @@ import NewPostIdForm from "./NewPostIdForm";
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isVisibility: "none",
+      isLoading: true,
+    };
     this.props.getCommentsRequest({ objectId: this.props.comments.objectId });
   }
   handleRequestReplies = (article_id, comment_id) => {
@@ -28,16 +32,43 @@ class App extends Component {
   onSubmitPostId = (objectId) => {
     this.props.getCommentsRequest({ objectId });
   };
+  handleToggleUIInputField = (e) => {
+    let currentNode = e.target;
+    let flag = false;
+    while (currentNode) {
+      if (currentNode === document.querySelector("form")) {
+        flag = true;
+        break;
+      } else {
+        currentNode = currentNode.parentNode;
+      }
+    }
+    if (!flag) this.setState({ isVisibility: "none" });
+  };
+  handleToggleOnUIInputField = () => {
+    this.setState({ isVisibility: "block" });
+  };
   render() {
     let comments = this.props.comments;
     return (
-      <div style={{ maxWidth: "1130px", margin: "0 auto" }}>
-        <NewPostIdForm onSubmitPostId={this.onSubmitPostId} />
-        <Sort sorting={comments.sort} handleSorting={this.handleSorting} />
-        <CommentsList
-          comments={comments}
-          handleRequestReplies={this.handleRequestReplies}
-        />
+      <div style={{ width: "100%" }} onClick={this.handleToggleUIInputField}>
+        <div style={{ maxWidth: "1130px", margin: "0 auto" }}>
+          <NewPostIdForm
+            onSubmitPostId={this.onSubmitPostId}
+            handleToggleOn={this.handleToggleOnUIInputField}
+            isVisibility={this.state.isVisibility}
+          />
+          <Sort sorting={comments.sort} handleSorting={this.handleSorting} />
+          {this.props.comments.isLoading === true ? (
+            <Skeleton height={500} />
+          ) : (
+            <CommentsList
+              comments={comments}
+              handleRequestReplies={this.handleRequestReplies}
+              isLoading={this.props.comments.isLoading}
+            />
+          )}
+        </div>
       </div>
     );
   }

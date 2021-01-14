@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSmile } from "@fortawesome/free-regular-svg-icons";
 export default class NewPostIdForm extends Component {
   state = {
-    isVisibility: "none",
     objectId: 4219024,
   };
   render() {
@@ -17,9 +16,14 @@ export default class NewPostIdForm extends Component {
       >
         <div className="input">
           <input
+            style={
+              this.props.isVisibility === "block"
+                ? { padding: "10px 0px 56px 10px", height: "101px" }
+                : { padding: "10px 0px 10px 10px", height: "55px" }
+            }
             onChange={(e) => this.setState({ objectId: e.target.value })}
             onFocus={() => {
-              this.setState({ isVisibility: "block" });
+              this.props.handleToggleOn();
             }}
             className="input__inputElement"
             placeholder="Ý kiến của bạn"
@@ -30,7 +34,7 @@ export default class NewPostIdForm extends Component {
             className="input__icon"
           />
         </div>
-        <div className="submit" style={{ display: this.state.isVisibility }}>
+        <div className="submit" style={{ display: this.props.isVisibility }}>
           <button className="submit__smBtn">Gửi</button>
         </div>
       </form>
