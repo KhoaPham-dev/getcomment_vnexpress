@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   sort: "like",
   objectId: 4219024,
   isLoading: true,
+  error: "",
 };
 
 const comments = (state = INITIAL_STATE, action) => {
@@ -46,6 +47,12 @@ const comments = (state = INITIAL_STATE, action) => {
         objectId: state.objectId,
         sort: state.sort,
         isLoading: `reply_${action.payload.commentId}`,
+      };
+    }
+    case Types.HANDLE_ERROR: {
+      return {
+        ...state,
+        error: action.payload.error,
       };
     }
     default: {

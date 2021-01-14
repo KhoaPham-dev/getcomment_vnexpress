@@ -14,7 +14,9 @@ function* getComments(action) {
         items: result.data.data,
       })
     );
-  } catch (error) {}
+  } catch (error) {
+    yield put(actions.handleError({ error: error.message }));
+  }
 }
 
 function* watchGetCommentsRequest() {
@@ -32,7 +34,9 @@ function* getReplies(action) {
         replies: result.data.data.items,
       })
     );
-  } catch (error) {}
+  } catch (error) {
+    yield put(actions.handleError({ error: error.message }));
+  }
 }
 function* watchGetRepliesRequest() {
   yield takeEvery(actions.Types.GET_REPLIES_REQUEST, getReplies);

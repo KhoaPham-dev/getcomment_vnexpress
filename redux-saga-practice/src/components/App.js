@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Skeleton from "react-loading-skeleton";
+import { Alert } from "reactstrap";
 import {
   getCommentsRequest,
   getRepliesRequest,
   handleSorting,
+  handleError,
 } from "../actions/comments";
 import CommentsList from "./CommentsList";
 import Sort from "./Sort";
@@ -48,11 +50,22 @@ class App extends Component {
   handleToggleOnUIInputField = () => {
     this.setState({ isVisibility: "block" });
   };
+  handleCloseAlert = () => {
+    this.props.handleError({ error: "" });
+  };
   render() {
     let comments = this.props.comments;
     return (
       <div style={{ width: "100%" }} onClick={this.handleToggleUIInputField}>
         <div style={{ maxWidth: "1130px", margin: "0 auto" }}>
+          <Alert
+            style={{ maxWidth: "calc(100% - 365px)" }}
+            isOpen={!!this.props.comments.error}
+            color="danger"
+            toggle={this.handleCloseAlert}
+          >
+            {this.props.comments.error}
+          </Alert>
           <NewPostIdForm
             onSubmitPostId={this.onSubmitPostId}
             handleToggleOn={this.handleToggleOnUIInputField}
@@ -78,4 +91,5 @@ export default connect(({ comments }) => ({ comments }), {
   getCommentsRequest,
   getRepliesRequest,
   handleSorting,
+  handleError,
 })(App);

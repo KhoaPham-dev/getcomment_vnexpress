@@ -40,3 +40,9 @@ export const handleSorting = (sort) => ({
   type: Types.HANDLE_SORTING,
   payload: { sort },
 });
+export const handleError = ({ error }) => ({
+  type: Types.HANDLE_ERROR,
+  payload: {
+    error,
+  },
+});
