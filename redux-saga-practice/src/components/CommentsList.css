@@ -47,6 +47,11 @@ u {
   color: white;
   text-decoration: none;
   font-weight: bold;
+  cursor: pointer;
+}
+.avatar .avatar__content img {
+  border-radius: 100%;
+  width: 100%;
 }
 
 .content,
@@ -63,6 +68,7 @@ u {
 .content .content__username {
   color: #04416d;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .like,
@@ -111,14 +117,21 @@ u {
   background: url("https://s1.vnecdn.net/vnexpress/restruct/c/v563/v2/wcomment/pc/vne/images/graphics/Reply.svg")
     no-repeat left center;
   padding-left: 20px;
+  cursor: pointer;
 }
 
 .reply {
-  margin-left: 56px;
+  margin-left: 46px;
+  padding-left: 8px;
+  border-left: 2px solid #e5e5e5;
+}
+.comment-more-block {
+  margin-bottom: 30px;
+  height: 48px;
+  width: 100%;
 }
 .comment-more-block__btn {
   background: #f7f7f7;
-  height: 48px;
   line-height: 48px;
   padding: 0 20px;
   font: 400 15px/48px arial;
@@ -129,9 +142,88 @@ u {
   display: block;
   position: relative;
   cursor: pointer;
-  margin-bottom: 20px;
 }
 .comment-more-block__btn:hover {
   background: #087cce;
   color: #fff;
+}
+.route-page {
+  margin-top: 20px;
+  float: right;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.route-page span {
+  margin-right: 20px;
+}
+.route-page .route-page__nth-page {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 36px;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  position: relative;
+  color: #4f4f4f;
+  font-weight: bold;
+  font-size: 18px;
+}
+.route-page .route-page__prev {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 36px;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  position: relative;
+  margin-right: 15px;
+  cursor: pointer;
+}
+.route-page .route-page__prev:before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  position: absolute;
+  top: 14px;
+  transform: rotate(135deg);
+  left: 16px;
+  border: solid #4f4f4f;
+  border-width: 0 2px 2px 0;
+}
+.route-page .route-page__next {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 36px;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  position: relative;
+  margin-left: 15px;
+  cursor: pointer;
+}
+.route-page .route-page__next:before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  position: absolute;
+  top: 14px;
+  transform: rotate(315deg);
+  left: 12px;
+  border: solid #4f4f4f;
+  border-width: 0 2px 2px 0;
+}
+.btn-unclick {
+  pointer-events: none !important;
+  background: #f7f7f7 !important;
+  border: 1px solid #f7f7f7 !important;
+}
+.btn-unclick:before {
+  border: solid #bdbdbd !important;
+  border-width: 0 2px 2px 0 !important;
+}
+.route-page .route-page__prev:hover,
+.route-page .route-page__next:hover,
+.route-page .route-page__nth-page:hover {
+  border: solid black 1px;
 }

@@ -1,13 +1,15 @@
 import axios from "axios";
 import { result, replies } from "./data";
-
-export const getComments = ({ objectId }) => {
+import { userProfiles } from "./userProfiles";
+export const getComments = ({ objectId, offset, sort }) => {
   return axios.get("get", {
     params: {
-      limit: 100,
+      limit: 25,
+      offset,
       siteid: 1000000,
       objecttype: 1,
       objectid: objectId,
+      sort_by: sort,
     },
     onDownloadProgress: (progressEvent) => {
       let percentCompleted = Math.round(
@@ -19,14 +21,26 @@ export const getComments = ({ objectId }) => {
   });
   //return result;
 };
-export const getReplies = ({ objectId, commentId }) => {
+
+export const getUserProfiles = (items) => {
+  let url =
+    "https://cors-anywhere.herokuapp.com/https://my.vnexpress.net/apifrontend/getusersprofile?";
+  items.forEach((e) => {
+    if (e.userid) url += "myvne_users_id[]=" + e.userid + "&";
+  });
+  return axios.get(url);
+  //return userProfiles;
+};
+
+export const getReplies = ({ objectId, commentId, limit, sort }) => {
   return axios.get("getreplay", {
     params: {
-      limit: 100,
+      limit: limit,
       siteid: 1000000,
       objecttype: 1,
       objectid: objectId,
       id: commentId,
+      sort_by: sort,
     },
   });
   //return replies;

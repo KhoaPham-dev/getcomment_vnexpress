@@ -52,7 +52,7 @@
     margin-top: 10px;
   }
   .submit {
-    max-width: calc(100% - 230px);
+    max-width: calc(100% - 115px);
   }
 }
 @media only screen and (max-width: 780px) {
@@ -62,7 +62,7 @@
     margin-top: 10px;
   }
   .submit {
-    max-width: calc(100% - 100px);
+    max-width: calc(100% - 50px);
   }
 }
 @media only screen and (max-width: 600px) {
@@ -72,6 +72,6 @@
     margin-top: 10px;
   }
   .submit {
-    max-width: calc(100% - 40px);
+    max-width: calc(100% - 20px);
   }
 }

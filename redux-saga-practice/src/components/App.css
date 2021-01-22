@@ -1,0 +1,32 @@
+.total-item .total-item__total {
+  font-size: 18px;
+}
+.total-item {
+  margin-top: 10px;
+  width: 100%;
+  max-width: calc(100% - 365px);
+}
+.total-item .total-item__total {
+  font-weight: bold;
+}
+@media only screen and (max-width: 1129px) {
+  .total-item {
+    max-width: calc(100% - 230px);
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+}
+@media only screen and (max-width: 780px) {
+  .total-item {
+    max-width: calc(100% - 100px);
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .total-item {
+    max-width: calc(100% - 40px);
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+}

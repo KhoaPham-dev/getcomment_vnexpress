@@ -6,7 +6,6 @@ const Sort = ({ sorting, handleSorting }) => {
         onClick={() => {
           handleSorting("like");
         }}
-        href="javascript:void(0);"
         className={
           "sort__care" + (sorting === "like" ? " sort__care--active" : "")
         }
@@ -17,7 +16,6 @@ const Sort = ({ sorting, handleSorting }) => {
         onClick={() => {
           handleSorting("time");
         }}
-        href="javascript:void(0);"
         className={
           "sort__new" + (sorting === "time" ? " sort__new--active" : "")
         }

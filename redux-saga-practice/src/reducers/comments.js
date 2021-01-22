@@ -2,20 +2,31 @@ import { Types } from "../actions/comments";
 
 const INITIAL_STATE = {
   items: {},
+  userItems: {},
   sort: "like",
-  objectId: 4219024,
+  objectId: 4224611,
   isLoading: true,
+  offset: 0,
   error: "",
 };
 
 const comments = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case Types.GET_COMMENTS_REQUEST: {
+      return {
+        ...state,
+        isLoading: action.payload.forWhat || true,
+      };
+    }
     case Types.GET_COMMENTS_SUCCESS: {
       return {
+        ...state,
         items: action.payload.items,
         objectId: action.payload.objectId,
         sort: state.sort,
         isLoading: false,
+        offset: action.payload.offset,
+        userItems: action.payload.userItems,
       };
     }
     case Types.GET_REPLIES_SUCCESS: {
@@ -27,25 +38,20 @@ const comments = (state = INITIAL_STATE, action) => {
       if (index !== -1)
         state.items.items[index].replys.items = action.payload.replies;
       return {
-        items: state.items,
-        sort: state.sort,
-        objectId: state.objectId,
+        ...state,
         isLoading: false,
       };
     }
     case Types.HANDLE_SORTING: {
       return {
-        items: state.items,
-        objectId: state.objectId,
+        ...state,
         sort: action.payload.sort,
-        isLoading: false,
+        isLoading: true,
       };
     }
     case Types.GET_REPLIES_REQUEST: {
       return {
-        items: state.items,
-        objectId: state.objectId,
-        sort: state.sort,
+        ...state,
         isLoading: `reply_${action.payload.commentId}`,
       };
     }
@@ -53,6 +59,12 @@ const comments = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         error: action.payload.error,
+      };
+    }
+    case Types.HANDLE_LOAD_MORE: {
+      return {
+        ...state,
+        isLoading: "loadmore",
       };
     }
     default: {
