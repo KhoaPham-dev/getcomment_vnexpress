@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import "./NewPostIdForm.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSmile } from "@fortawesome/free-regular-svg-icons";
+import { Form, Button, Input } from "antd";
+import { SmileOutlined } from "@ant-design/icons";
+
 export default class NewPostIdForm extends Component {
   state = {
     objectId: 4224611,
   };
   render() {
     return (
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
+      <Form
+        onFinish={() => {
           this.props.onSubmitPostId(this.state.objectId);
         }}
       >
-        <div className="input">
-          <input
+        <Form.Item className="input">
+          <Input
             style={
               this.props.isVisibility === "block"
                 ? { padding: "10px 0px 56px 10px", height: "101px" }
@@ -28,16 +28,17 @@ export default class NewPostIdForm extends Component {
             className="input__inputElement"
             placeholder="Ý kiến của bạn"
           />
-          <FontAwesomeIcon
-            icon={faSmile}
-            color="grey"
-            className="input__icon"
-          />
-        </div>
-        <div className="submit" style={{ display: this.props.isVisibility }}>
-          <button className="submit__smBtn">Gửi</button>
-        </div>
-      </form>
+          <SmileOutlined style={{ color: "grey" }} className="input__icon" />
+        </Form.Item>
+        <Form.Item
+          className="submit"
+          style={{ display: this.props.isVisibility }}
+        >
+          <Button type="primary" htmlType="submit" className="submit__smBtn">
+            Gửi
+          </Button>
+        </Form.Item>
+      </Form>
     );
   }
 }

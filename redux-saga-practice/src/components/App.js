@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Skeleton from "react-loading-skeleton";
-import { Alert } from "reactstrap";
+import { Skeleton, Alert } from "antd";
 import {
   getCommentsRequest,
   getRepliesRequest,
@@ -85,13 +84,18 @@ class App extends Component {
       <div style={{ width: "100%" }} onClick={this.handleToggleUIInputField}>
         <div style={{ maxWidth: "1130px", margin: "0 auto" }}>
           <Alert
-            style={{ maxWidth: "calc(100% - 365px)" }}
-            isOpen={!!this.props.comments.error}
-            color="danger"
-            toggle={this.handleCloseAlert}
-          >
-            {this.props.comments.error}
-          </Alert>
+            className="error"
+            afterClose={() => {
+              this.handleCloseAlert();
+            }}
+            message={this.props.comments.error}
+            type="error"
+            style={{
+              transition: "0.5s",
+              display: !!this.props.comments.error ? "flex" : "none",
+            }}
+            closable
+          />
           {this.props.comments.items.items ? (
             <div className="total-item">
               <span className="total-item__total">
@@ -105,9 +109,14 @@ class App extends Component {
             isVisibility={this.state.isVisibility}
           />
           <Sort sorting={comments.sort} handleSorting={this.handleSorting} />
-          {this.props.comments.isLoading === true ? (
-            <Skeleton height={500} />
-          ) : (
+
+          <Skeleton
+            avatar
+            paragraph={{ rows: 4 }}
+            loading={this.props.comments.isLoading === true ? true : false}
+            active
+            className="skeleton-all-cmts"
+          >
             <CommentsList
               comments={comments}
               handleRequestReplies={this.handleRequestReplies}
@@ -115,7 +124,7 @@ class App extends Component {
               offset={this.props.comments.offset}
               handleLoadMore={this.handleLoadMore}
             />
-          )}
+          </Skeleton>
         </div>
       </div>
     );
